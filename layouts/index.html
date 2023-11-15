@@ -33,7 +33,10 @@
                 {{- $pages = .Paginate $pages -}}
             {{- end -}}
             {{- range $pages.Pages -}}
-                {{- .Render "summary" -}}
+                {{ if .Params.sensitive }}
+                {{ else }}
+                    {{- .Render "summary" -}}
+                {{ end }}
             {{- end -}}
             {{- partial "paginator.html" . -}}
         {{- end -}}
